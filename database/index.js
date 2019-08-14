@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/todolist');
+mongoose.connect('mongodb://localhost/todolist', { useNewUrlParser: true });
 
-const db = mongoose.connection;
+var db = mongoose.connection;
 
 db.on('error', () => {
-  console.log('mongoose connection error');
+  console.log('fail to connect mongoose');
 });
-
 db.once('open', () => {
-  console.log('mongoose connected successfully');
+  console.log('successfully connected to mongoose');
 });
 
 module.exports = db;
