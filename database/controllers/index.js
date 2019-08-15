@@ -44,7 +44,7 @@ const deleteTodo = (id, callback) => {
       callback(err);
     }
     else {
-      callback(null, err);
+      callback(null, result);
     }
   })
 }
@@ -55,7 +55,7 @@ const deleteAllTodos = (callback) => {
       callback(err);
     }
     else {
-      callback(null, err);
+      callback(null, result);
     }
   })
 }
