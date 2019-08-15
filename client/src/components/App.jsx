@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import TodoList from './TodoList.jsx';
+import AddTodoBar from './AddTodoBar.jsx';
 
 class App extends React.Component {
 
@@ -11,6 +12,7 @@ class App extends React.Component {
     }
     this.removeTodo = this.removeTodo.bind(this);
     this.getTodos = this.getTodos.bind(this);
+    this.addTodo = this.addTodo.bind(this);
   }
 
   getTodos() {
@@ -33,7 +35,17 @@ class App extends React.Component {
         this.getTodos();
       })
       .catch(error => {
-        console.log('failed');
+        console.log('failed to remove todo');
+      })
+  }
+
+  addTodo(obj) {
+    axios.post('/todos', obj)
+      .then(result => {
+        this.getTodos();
+      })
+      .catch(error => {
+        console.log('failed to post todo')
       })
   }
 
@@ -41,10 +53,10 @@ class App extends React.Component {
     return (
       <div>
         <h1>Much To Do List</h1>
-        {/* <AddTodoBar />
-        <ShowAllBtn />
+        <AddTodoBar addTodo={this.addTodo} />
+        {/* <ShowAllBtn />
         <CompletedBtn />
-        <IncompleteBtn /> */}
+        <IncompleteBtn />  */}
         <TodoList todos={this.state.todos} removeTodo={this.removeTodo} />
         {/* <DeleteBtn /> */}
       </div>

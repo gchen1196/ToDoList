@@ -26,7 +26,6 @@ app.get('/todos', (req, res) => {
 })
 //Provide an endpoint to enable creating new todos
 app.post('/todos', (req, res) => {
-  console.log(req.body)
   fn.saveTodo(req.body, (err, result) => {
     if (err) {
       res.status(400);
