@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 //Provide an endpoint to fetch all your todos
 app.get('/todos', (req, res) => {
   fn.getAllTodos((err, result) => {
-    console.log(result);
     if (err) {
       res.status(400);
       res.send(err);
@@ -60,7 +59,7 @@ app.put('/todos', (req, res) => {
 })
 //Provide an endpoint to delete a todo
 app.delete('/todo', (req, res) => {
-  const id = req.body.id;
+  const id = req.body;
   fn.deleteTodo(id, (err, result) => {
     if (err) {
       res.status(400);
@@ -74,7 +73,16 @@ app.delete('/todo', (req, res) => {
 })
 //Provide an endpoint to delete all todos
 app.delete('/todos', (req, res) => {
-  
+  fn.deleteAllTodos((err, result) => {
+    if (err) {
+      res.status(400);
+      res.send(err);
+    }
+    else {
+      res.status(200);
+      res.status(result);
+    }
+  })
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}...`))

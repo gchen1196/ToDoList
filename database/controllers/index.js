@@ -39,7 +39,7 @@ const updateTodo = (id, data, callback) => {
 }
 
 const deleteTodo = (id, callback) => {
-  Todo.findByIdAndRemove(id, (err, result) => {
+  Todo.deleteOne(id, (err, result) => {
     if (err) {
       callback(err);
     }
