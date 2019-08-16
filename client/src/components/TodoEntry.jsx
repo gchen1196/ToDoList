@@ -18,11 +18,12 @@ class TodoEntry extends React.Component {
       <div>
         <input
           type="checkbox"
+          checked={this.props.completion}
           onChange={() => this.props.updateTodo(id, null, !this.props.completion)} 
         />
         <span>{this.props.content}</span>
         <button onClick={() => this.props.removeTodo(id)} >
-         Remove
+          Remove
         </button>
       </div>
     )

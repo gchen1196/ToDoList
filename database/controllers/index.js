@@ -50,7 +50,7 @@ const deleteTodo = (id, callback) => {
 }
 
 const deleteAllTodos = (callback) => {
-  Todo.remove({}, (err, result) => {
+  Todo.deleteMany({}, (err, result) => {
     if (err) {
       callback(err);
     }

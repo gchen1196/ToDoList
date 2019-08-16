@@ -8,18 +8,28 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [],
+      allTodos: [],
+      completedTodos: [],
+      uncompleteTodos: [],
+      showAll: true,
+      showCompleted: false,
+      showUncomplete: false
     }
     this.removeTodo = this.removeTodo.bind(this);
     this.getTodos = this.getTodos.bind(this);
     this.addTodo = this.addTodo.bind(this);
     this.updateTodo = this.updateTodo.bind(this);
+    this.removeAllTodos = this.removeAllTodos.bind(this);
   }
 
   getTodos() {
     axios.get('/todos')
     .then(result => {
-      this.setState({todos: result.data});
+      this.setState({
+        allTodos: result.data,
+        completedTodos: result.data.filter(todo => todo.completion === true),
+        uncompleteTodos: result.data.filter(todo => todo.completion === false)
+      });
     })
     .catch(error => {
       console.log(error);
@@ -40,6 +50,16 @@ class App extends React.Component {
       })
   }
 
+  removeAllTodos() {
+    axios.delete('/todos')
+    .then(result => {
+      this.getTodos();
+    })
+    .catch(error => {
+      console.log('fail to delete all todos');
+    })
+  }
+
   addTodo(obj) {
     axios.post('/todos', obj)
       .then(result => {
@@ -56,7 +76,6 @@ class App extends React.Component {
         completion: changedCompletion
       }
       const data = { id, toUpdate };
-      console.log(data);
       axios.put('/todos', data)
         .then(result => {
           this.getTodos();
@@ -67,16 +86,59 @@ class App extends React.Component {
     }
   }
 
+  onShowAllClick() {
+    this.setState({
+      showAll: true,
+      showCompleted: false,
+      showUncomplete: false
+    })
+  }
+
+  onShowUncompletedClick() {
+    this.setState({
+      showAll: false,
+      showCompleted: false,
+      showUncomplete: true
+    })
+  }
+
+  onShowCompletedClick() {
+    this.setState({
+      showAll: false,
+      showCompleted: true,
+      showUncomplete: false
+    })
+  }
+
+  onDeleteAllClick() {
+    this.removeAllTodos();
+  }
+
   render() {
+    var todos = this.state.allTodos;
+    if (this.state.showCompleted) {
+      todos = this.state.completedTodos;
+    }
+    if (this.state.showUncomplete) {
+      todos = this.state.uncompleteTodos;
+    }
     return (
       <div>
         <h1>Much To Do List</h1>
         <AddTodoBar addTodo={this.addTodo} />
-        {/* <ShowAllBtn />
-        <CompletedBtn />
-        <IncompleteBtn />  */}
-        <TodoList todos={this.state.todos} removeTodo={this.removeTodo} updateTodo={this.updateTodo} />
-        {/* <DeleteBtn /> */}
+        <button className='showAll' onClick = {() => this.onShowAllClick()}>
+          To Dos and Dones
+        </button>
+        <button className='showUncompleted' onClick = {() => this.onShowUncompletedClick()}>
+          To Dos
+        </button>
+        <button className='showCompleted' onClick = {() => this.onShowCompletedClick()}>
+          Dones 
+        </button>
+        <TodoList todos={todos} removeTodo={this.removeTodo} updateTodo={this.updateTodo} />
+        <button className='deleteAll' onClick ={() => this.onDeleteAllClick()}>
+          Remove All
+        </button>
       </div>
     )
   }

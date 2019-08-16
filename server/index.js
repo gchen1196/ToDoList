@@ -79,7 +79,7 @@ app.delete('/todos', (req, res) => {
     }
     else {
       res.status(200);
-      res.status(result);
+      res.send(result);
     }
   })
 })
