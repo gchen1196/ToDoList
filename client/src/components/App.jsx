@@ -13,6 +13,7 @@ class App extends React.Component {
     this.removeTodo = this.removeTodo.bind(this);
     this.getTodos = this.getTodos.bind(this);
     this.addTodo = this.addTodo.bind(this);
+    this.updateTodo = this.updateTodo.bind(this);
   }
 
   getTodos() {
@@ -49,6 +50,23 @@ class App extends React.Component {
       })
   }
 
+  updateTodo(id, changedContent = null, changedCompletion = null) {
+    if (changedCompletion !== null) {
+      const toUpdate = {
+        completion: changedCompletion
+      }
+      const data = { id, toUpdate };
+      console.log(data);
+      axios.put('/todos', data)
+        .then(result => {
+          this.getTodos();
+        })
+        .catch(error => {
+          console.log('failed to update');
+        })
+    }
+  }
+
   render() {
     return (
       <div>
@@ -57,7 +75,7 @@ class App extends React.Component {
         {/* <ShowAllBtn />
         <CompletedBtn />
         <IncompleteBtn />  */}
-        <TodoList todos={this.state.todos} removeTodo={this.removeTodo} />
+        <TodoList todos={this.state.todos} removeTodo={this.removeTodo} updateTodo={this.updateTodo} />
         {/* <DeleteBtn /> */}
       </div>
     )

@@ -40,8 +40,8 @@ app.post('/todos', (req, res) => {
 //Provide an endpoint to update a todo
 app.put('/todos', (req, res) => {
   const id = req.body.id;
+  const data = req.body.toUpdate;
   fn.updateTodo(
-    //*Prolly need to adjust input*
     id,
     data,
     (err, result) => {

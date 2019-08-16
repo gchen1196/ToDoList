@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 
 class TodoEntry extends React.Component {
 
@@ -14,9 +13,14 @@ class TodoEntry extends React.Component {
     const id = {
       _id: this.props.id
     };
+
     return (
       <div>
-        <div>{this.props.content}</div>
+        <input
+          type="checkbox"
+          onChange={() => this.props.updateTodo(id, null, !this.props.completion)} 
+        />
+        <span>{this.props.content}</span>
         <button onClick={() => this.props.removeTodo(id)} >
          Remove
         </button>
