@@ -7,11 +7,9 @@ const TodoEntry = props => {
     _id: props.id
   };
 
-  let textColorChange = 'normal';
+  let textColorChange = props.completion ? 'red': 'normal';
 
-  if (props.completion) {
-    textColorChange = 'red';
-  }
+  let toCross = props.completion ? <strike>{props.content}</strike>: props.content;
 
   return (
     <TodoEntryStyled>
@@ -21,8 +19,8 @@ const TodoEntry = props => {
           checked={props.completion}
           onChange={() => props.updateTodo(id, null, !props.completion)} 
         />
-        <span className={textColorChange}> {props.content}</span>
-        <button onClick={() => props.removeTodo(id)} >
+        <span className={textColorChange}>{toCross}</span>
+        <button onClick={() => props.removeTodo(id)}>
           X
         </button>
       </div>

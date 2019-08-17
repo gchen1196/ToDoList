@@ -116,13 +116,12 @@ class App extends React.Component {
   }
 
   render() {
-    var todos = this.state.allTodos;
-    if (this.state.showCompleted) {
-      todos = this.state.completedTodos;
-    }
-    if (this.state.showUncomplete) {
-      todos = this.state.uncompleteTodos;
-    }
+    
+    let todos = 
+      this.state.showCompleted ? this.state.completedTodos 
+      : this.state.showUncomplete ? this.state.uncompleteTodos 
+      : this.state.allTodos;
+
     return (
       <AppStyled>
         <h1>Much To Do List</h1>
