@@ -127,7 +127,6 @@ class App extends React.Component {
       <AppStyled>
         <h1>Much To Do List</h1>
         <div className='main-wrapper'>
-          <AddTodoBar addTodo={this.addTodo} />
           <div className='button-wrapper'>
             <div className='button showAll' onClick = {() => this.onShowAllClick()}>
               To Dos and Dones
@@ -139,6 +138,7 @@ class App extends React.Component {
               Dones 
             </div>
           </div>
+          <AddTodoBar addTodo={this.addTodo} />
           <TodoList todos={todos} removeTodo={this.removeTodo} updateTodo={this.updateTodo} />
           <div className='buttonDeleteAll' onClick ={() => this.onDeleteAllClick()}>
             Clear List

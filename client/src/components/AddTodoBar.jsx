@@ -1,17 +1,22 @@
 import React from 'react';
+import AddTodoBarStyled from '../styledcomponents/AddTodoBarStyled.js';
 
 class AddTodoBar extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      content: '',
+      content: 'What to do...',
       completion: false
     };
   }
 
   onInputChange(e) {
     this.setState({ content: e.target.value });
+  }
+
+  onInputClick() {
+    this.setState({ content: '' });
   }
 
   onFormSubmit(e) {
@@ -27,12 +32,13 @@ class AddTodoBar extends React.Component {
 
   render() {
     return (
-      <form onSubmit={(e) => this.onFormSubmit(e)}>
-        <label>
-          To Do: 
-          <input type="text" value={this.state.content} onChange={(e) => this.onInputChange(e)} />
-        </label>
-      </form>
+      <AddTodoBarStyled>
+        <form onSubmit={(e) => this.onFormSubmit(e)}>
+          <label>
+            <input type="text" value={this.state.content} onClick={() => this.onInputClick()} onChange={(e) => this.onInputChange(e)} />
+          </label>
+        </form>
+      </AddTodoBarStyled>
     )
   }
 };
