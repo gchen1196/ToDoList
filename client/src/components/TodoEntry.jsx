@@ -15,6 +15,12 @@ class TodoEntry extends React.Component {
       _id: this.props.id
     };
 
+    let textColorChange = 'normal';
+
+    if (this.props.completion) {
+      textColorChange = 'red';
+    }
+
     return (
       <TodoEntryStyled>
         <div className='wrapper-entry'>
@@ -23,7 +29,7 @@ class TodoEntry extends React.Component {
             checked={this.props.completion}
             onChange={() => this.props.updateTodo(id, null, !this.props.completion)} 
           />
-          <span>{this.props.content}</span>
+          <span className={textColorChange}> {this.props.content}</span>
           <button onClick={() => this.props.removeTodo(id)} >
             X
           </button>
