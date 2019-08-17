@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import TodoList from './TodoList.jsx';
 import AddTodoBar from './AddTodoBar.jsx';
+import AppStyled from '../styledcomponents/AppStyled.js';
 
 class App extends React.Component {
 
@@ -123,23 +124,27 @@ class App extends React.Component {
       todos = this.state.uncompleteTodos;
     }
     return (
-      <div>
+      <AppStyled>
         <h1>Much To Do List</h1>
-        <AddTodoBar addTodo={this.addTodo} />
-        <button className='showAll' onClick = {() => this.onShowAllClick()}>
-          To Dos and Dones
-        </button>
-        <button className='showUncompleted' onClick = {() => this.onShowUncompletedClick()}>
-          To Dos
-        </button>
-        <button className='showCompleted' onClick = {() => this.onShowCompletedClick()}>
-          Dones 
-        </button>
-        <TodoList todos={todos} removeTodo={this.removeTodo} updateTodo={this.updateTodo} />
-        <button className='deleteAll' onClick ={() => this.onDeleteAllClick()}>
-          Remove All
-        </button>
-      </div>
+        <div className='main-wrapper'>
+          <AddTodoBar addTodo={this.addTodo} />
+          <div className='button-wrapper'>
+            <div className='button showAll' onClick = {() => this.onShowAllClick()}>
+              To Dos and Dones
+            </div>
+            <div className='button showUncompleted' onClick = {() => this.onShowUncompletedClick()}>
+              To Dos
+            </div>
+            <div className='button showCompleted' onClick = {() => this.onShowCompletedClick()}>
+              Dones 
+            </div>
+          </div>
+          <TodoList todos={todos} removeTodo={this.removeTodo} updateTodo={this.updateTodo} />
+          <div className='buttonDeleteAll' onClick ={() => this.onDeleteAllClick()}>
+            Clear List
+          </div>
+        </div>
+      </AppStyled>
     )
   }
 }
