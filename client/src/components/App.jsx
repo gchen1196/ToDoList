@@ -116,7 +116,7 @@ class App extends React.Component {
   }
 
   render() {
-    
+
     let todos = 
       this.state.showCompleted ? this.state.completedTodos 
       : this.state.showUncomplete ? this.state.uncompleteTodos 
