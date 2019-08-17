@@ -1,8 +1,6 @@
 import React from 'react';
 import TodoEntry from './TodoEntry.jsx';
 
-
-//use filter method to filter out completed and not completed lists
 const TodoList = props => {
   return (
     <div>

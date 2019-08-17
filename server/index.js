@@ -10,8 +10,6 @@ app.use(express.static(`${__dirname}/../client/dist`));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}));
 
-
-//Provide an endpoint to fetch all your todos
 app.get('/todos', (req, res) => {
   fn.getAllTodos((err, result) => {
     if (err) {
@@ -24,7 +22,7 @@ app.get('/todos', (req, res) => {
     }
   })
 })
-//Provide an endpoint to enable creating new todos
+
 app.post('/todos', (req, res) => {
   fn.saveTodo(req.body, (err, result) => {
     if (err) {
@@ -37,7 +35,7 @@ app.post('/todos', (req, res) => {
     }
   })
 })
-//Provide an endpoint to update a todo
+
 app.put('/todos', (req, res) => {
   const id = req.body.id;
   const data = req.body.toUpdate;
@@ -56,7 +54,7 @@ app.put('/todos', (req, res) => {
     }
   )
 })
-//Provide an endpoint to delete a todo
+
 app.delete('/todo', (req, res) => {
   const id = req.body;
   fn.deleteTodo(id, (err, result) => {
@@ -70,7 +68,7 @@ app.delete('/todo', (req, res) => {
     }
   })
 })
-//Provide an endpoint to delete all todos
+
 app.delete('/todos', (req, res) => {
   fn.deleteAllTodos((err, result) => {
     if (err) {
