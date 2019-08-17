@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const AppStyled = styled.div`  
-
   h1 {
     text-align: center;
   }

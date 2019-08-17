@@ -22,7 +22,6 @@ const TodoEntryStyled = styled.div`
     margin: 3px;
     color: red;
   }
-
 `
 
 export default TodoEntryStyled;
