@@ -8,8 +8,10 @@ const TodoEntryStyled = styled.div`
     border-bottom: 1px solid blue; 
     width: 100%;
     height: auto;
-    display: incline-block;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .normal {
@@ -21,6 +23,17 @@ const TodoEntryStyled = styled.div`
     font-size: 22px;
     margin: 3px;
     color: red;
+  }
+
+  .removeButton {
+    width: 13px;
+    height: 100%;
+    border: 1px solid black;
+    color: white;
+    background: red;
+    border-radius: 5px;
+    margin-left: auto;
+    cursor: pointer
   }
 `
 

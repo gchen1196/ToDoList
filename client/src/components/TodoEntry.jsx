@@ -20,9 +20,9 @@ const TodoEntry = props => {
           onChange={() => props.updateTodo(id, null, !props.completion)} 
         />
         <span className={textColorChange}>{toCross}</span>
-        <button onClick={() => props.removeTodo(id)}>
+        <div className='removeButton' onClick={() => props.removeTodo(id)}>
           X
-        </button>
+        </div>
       </div>
     </TodoEntryStyled>
   )

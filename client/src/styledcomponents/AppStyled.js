@@ -37,6 +37,13 @@ const AppStyled = styled.div`
     margin-top: 15px;
   }
 
+  .buttonDeleteAll:hover {
+    color: white !important;
+    background: red;
+    border-color: red;
+    transition: all 0.4s ease 0s;
+  }
+
   .button:hover {
     color: #ffffff !important;
     background: #80b3ff;

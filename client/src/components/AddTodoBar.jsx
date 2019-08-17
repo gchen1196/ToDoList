@@ -35,7 +35,7 @@ class AddTodoBar extends React.Component {
       <AddTodoBarStyled>
         <form onSubmit={(e) => this.onFormSubmit(e)}>
           <label>
-            <input type="text" value={this.state.content} onClick={() => this.onInputClick()} onChange={(e) => this.onInputChange(e)} />
+            <input type="text" value={this.state.content} maxLength='43' onClick={() => this.onInputClick()} onChange={(e) => this.onInputChange(e)} />
           </label>
         </form>
       </AddTodoBarStyled>
