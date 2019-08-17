@@ -1,7 +1,7 @@
 # ToDoList
 
 ## How to start
-- in terminal:
+- in terminal inside ToDoList directory:
   - npm install
   - npm run react-dev
   - npm run start
